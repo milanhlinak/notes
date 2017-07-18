@@ -5,6 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { QuickNoteService } from './shared/quick-note.service';
 import { QuickNotesRoutingModule } from './quick-notes-routing.module';
 import { QuickNotesComponent } from './quick-notes.component';
+import { QuickNoteComponent } from './quick-note/quick-note.component';
 
 @NgModule({
     imports: [
@@ -14,7 +15,8 @@ import { QuickNotesComponent } from './quick-notes.component';
         QuickNotesRoutingModule
     ],
     declarations: [
-        QuickNotesComponent
+        QuickNotesComponent,
+        QuickNoteComponent
     ],
     providers: [
         QuickNoteService
