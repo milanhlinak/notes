@@ -6,7 +6,7 @@
   <p>Loading...</p>
 </div>
 
-<div *ngIf="!loading && result">
+<div *ngIf="!loading && !!result">
 
   <div *ngIf="result.length === 0">
     <p>No quick notes</p>

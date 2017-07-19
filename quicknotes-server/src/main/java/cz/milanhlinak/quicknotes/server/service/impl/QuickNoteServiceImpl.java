@@ -1,16 +1,16 @@
 package cz.milanhlinak.quicknotes.server.service.impl;
 
 import cz.milanhlinak.quicknotes.server.dao.domain.QuickNoteEntity;
+import cz.milanhlinak.quicknotes.server.dao.repository.QuickNoteRepository;
 import cz.milanhlinak.quicknotes.server.dto.QuickNote;
 import cz.milanhlinak.quicknotes.server.exception.QuickNoteNotFoundException;
-import cz.milanhlinak.quicknotes.server.dao.repository.QuickNoteRepository;
+import cz.milanhlinak.quicknotes.server.service.QuickNoteService;
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import cz.milanhlinak.quicknotes.server.service.QuickNoteService;
 
 /**
  * Implementation of quick note service.
@@ -43,7 +43,6 @@ public class QuickNoteServiceImpl implements QuickNoteService {
 
     @Override
     public QuickNote getQuickNote(Long id) {
-
         QuickNoteEntity quickNoteEntity = quickNoteRepository.findOne(id);
         if (quickNoteEntity == null) {
             LOG.error("Quick note with id {} not found", id);
@@ -68,7 +67,6 @@ public class QuickNoteServiceImpl implements QuickNoteService {
 
     @Override
     public void updateQuickNote(Long id, QuickNote quickNote) {
-
         QuickNoteEntity quickNoteEntity = quickNoteRepository.findOne(id);
         if (quickNoteEntity == null) {
             LOG.error("Quick note with id {} not found", id);
@@ -84,7 +82,6 @@ public class QuickNoteServiceImpl implements QuickNoteService {
 
     @Override
     public void deleteQuickNote(Long id) {
-
         QuickNoteEntity quickNoteEntity = quickNoteRepository.findOne(id);
         if (quickNoteEntity == null) {
             LOG.error("Quick note with id {} not found", id);

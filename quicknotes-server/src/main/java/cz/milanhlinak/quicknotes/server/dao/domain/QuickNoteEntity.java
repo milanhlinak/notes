@@ -1,9 +1,12 @@
 package cz.milanhlinak.quicknotes.server.dao.domain;
 
+import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Quick note entity.
@@ -11,12 +14,18 @@ import javax.persistence.Id;
  * @author Milan Hlinak
  */
 @Entity
-public class QuickNoteEntity {
+@Table(name = "quicknote")
+public class QuickNoteEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
+    
+    @Column(name = "title")
     private String title;
+    
+    @Column(name = "text")
     private String text;
 
     public Long getId() {

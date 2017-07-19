@@ -1,6 +1,7 @@
 package cz.milanhlinak.quicknotes.server.controller;
 
 import cz.milanhlinak.quicknotes.server.dto.QuickNote;
+import cz.milanhlinak.quicknotes.server.service.QuickNoteService;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import cz.milanhlinak.quicknotes.server.service.QuickNoteService;
 
 /**
  * Quick note controller.
