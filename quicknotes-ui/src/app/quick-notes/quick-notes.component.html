@@ -19,14 +19,34 @@
   </div>
 </div>
 
-<div *ngIf="!loading && !!result">
+<div *ngIf=" !!result">
 
   <div *ngIf="result.length === 0" class="row">
     <h3 class="text-center" style="margin: 100px auto;">{{ 'quick-notes.no-quick-notes' | translate }}</h3>
   </div>
 
   <div *ngFor="let quickNote of result">
-    <app-quick-note [quickNote]="quickNote" (deleteQuickNote)="onDeleteQuickNote($event)"></app-quick-note>
+    <app-quick-note [quickNote]="quickNote" [loading]="loading" (deleteQuickNote)="onDeleteQuickNote($event)" (editQuickNote)="onEditQuickNote($event)"></app-quick-note>
   </div>
 
+</div>
+
+<div bsModal #createModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Create</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideCreateModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        I am a child modal, opened from parent component!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="create()">Create</button>
+        <button type="button" class="btn btn-default" (click)="hideCreateModal()">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

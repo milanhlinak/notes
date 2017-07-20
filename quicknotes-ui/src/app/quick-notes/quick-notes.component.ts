@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { QuickNoteService } from './shared/quick-note.service';
 import { QuickNote } from './shared/quick-note.model';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-quick-notes',
@@ -9,6 +10,8 @@ import { QuickNote } from './shared/quick-note.model';
   styleUrls: ['./quick-notes.component.scss']
 })
 export class QuickNotesComponent implements OnInit, OnDestroy {
+
+  @ViewChild('createModal') createModal: ModalDirective;
 
   private subscription: Subscription = null;
   result: QuickNote[] = null;
@@ -38,15 +41,12 @@ export class QuickNotesComponent implements OnInit, OnDestroy {
   }
 
   onNewClick() {
-    const title = 'Quick note ' + Math.random().toString(36).substring(7);
-    const text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, '
-      + 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
-      + 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris '
-      + 'nisi ut aliquip ex ea commodo consequat.';
-    const quickNote: QuickNote = { title: title, text: text };
+    this.createModal.show();
+  }
 
+  onDeleteQuickNote(quickNote: QuickNote) {
     this.loading = true;
-    this.quickNoteService.createQuickNote(quickNote)
+    this.quickNoteService.deleteQuickNote(quickNote.id)
       .subscribe(
       next => {
         this.loading = false;
@@ -58,9 +58,33 @@ export class QuickNotesComponent implements OnInit, OnDestroy {
       );
   }
 
-  onDeleteQuickNote(id: number) {
+  onEditQuickNote(quickNote: QuickNote) {
     this.loading = true;
-    this.quickNoteService.deleteQuickNote(id)
+    this.quickNoteService.updateQuickNote(quickNote.id, quickNote)
+      .subscribe(
+      next => {
+        this.loading = false;
+        this.result = next;
+      },
+      errror => {
+        this.loading = false;
+      }
+      );
+  }
+
+
+  hideCreateModal() {
+    this.createModal.hide();
+  }
+
+  create() {
+
+    const quickNote: QuickNote = { title: 'title', text: 'text' };
+
+    this.createModal.hide();
+
+    this.loading = true;
+    this.quickNoteService.createQuickNote(quickNote)
       .subscribe(
       next => {
         this.loading = false;

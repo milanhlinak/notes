@@ -6,13 +6,15 @@ import { QuickNoteService } from './shared/quick-note.service';
 import { QuickNotesRoutingModule } from './quick-notes-routing.module';
 import { QuickNotesComponent } from './quick-notes.component';
 import { QuickNoteComponent } from './quick-note/quick-note.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         TranslateModule,
-        QuickNotesRoutingModule
+        QuickNotesRoutingModule,
+        ModalModule
     ],
     declarations: [
         QuickNotesComponent,

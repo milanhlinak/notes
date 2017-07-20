@@ -2,11 +2,15 @@
 @import "./src/style/app.theme";
 
 .spinner {
-    margin: 100px auto;
     width: 50px;
     height: 40px;
-    text-align: center;
-    font-size: 10px;
+    position: fixed;
+    z-index: 999;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 
     > div {
         background-color: $brand-primary;

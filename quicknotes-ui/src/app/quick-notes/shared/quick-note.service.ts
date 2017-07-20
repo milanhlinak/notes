@@ -13,7 +13,7 @@ export class QuickNoteService {
   constructor(private http: Http) { }
 
   getQuickNotes(): Observable<QuickNote[]> {
-    return this.http.get('/api/quicknotes').delay(2000)
+    return this.http.get('/api/quicknotes')
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -25,13 +25,13 @@ export class QuickNoteService {
   }
 
   createQuickNote(quickNote: QuickNote): Observable<QuickNote[]> {
-    return this.http.post('/api/quicknotes', quickNote)
+    return this.http.post('/api/quicknotes', quickNote).delay(500000)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   updateQuickNote(id: number, quickNote: QuickNote): Observable<QuickNote[]> {
-    return this.http.put('/api/quicknotes', quickNote)
+    return this.http.put('/api/quicknotes/' + id, quickNote)
       .map(this.extractData)
       .catch(this.handleError);
   }
