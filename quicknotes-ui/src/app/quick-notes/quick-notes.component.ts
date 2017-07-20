@@ -37,4 +37,39 @@ export class QuickNotesComponent implements OnInit, OnDestroy {
     }
   }
 
+  onNewClick() {
+    const title = 'Quick note ' + Math.random().toString(36).substring(7);
+    const text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, '
+      + 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
+      + 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris '
+      + 'nisi ut aliquip ex ea commodo consequat.';
+    const quickNote: QuickNote = { title: title, text: text };
+
+    this.loading = true;
+    this.quickNoteService.createQuickNote(quickNote)
+      .subscribe(
+      next => {
+        this.loading = false;
+        this.result = next;
+      },
+      errror => {
+        this.loading = false;
+      }
+      );
+  }
+
+  onDeleteQuickNote(id: number) {
+    this.loading = true;
+    this.quickNoteService.deleteQuickNote(id)
+      .subscribe(
+      next => {
+        this.loading = false;
+        this.result = next;
+      },
+      errror => {
+        this.loading = false;
+      }
+      );
+  }
+
 }

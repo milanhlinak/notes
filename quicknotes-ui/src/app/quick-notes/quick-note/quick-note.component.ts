@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { QuickNote } from '../shared/quick-note.model';
+import { QuickNoteService } from '../shared/quick-note.service';
 
 @Component({
   selector: 'app-quick-note',
@@ -9,10 +10,20 @@ import { QuickNote } from '../shared/quick-note.model';
 export class QuickNoteComponent implements OnInit {
 
   @Input() quickNote: QuickNote;
+  @Output() deleteQuickNote = new EventEmitter<number>();
 
-  constructor() { }
+  constructor(private quickNoteService: QuickNoteService) { }
 
   ngOnInit() {
+  }
+
+  onEditClick() {
+    console.log('on edit quick note %d click', this.quickNote.id);
+  }
+
+  onDeleteClick() {
+    console.log('on delete quick note %d click', this.quickNote.id);
+    this.deleteQuickNote.emit(this.quickNote.id);
   }
 
 }

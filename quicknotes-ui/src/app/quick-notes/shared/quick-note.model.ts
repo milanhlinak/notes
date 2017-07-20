@@ -1,5 +1,5 @@
 export class QuickNote {
-    id: number;
+    id?: number;
     title: string;
     text: string;
 }

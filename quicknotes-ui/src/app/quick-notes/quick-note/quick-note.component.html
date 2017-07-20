@@ -1,4 +1,21 @@
-<div class="bs-callout bs-callout-primary">
-  <h4>{{quickNote.title}}</h4>
-  <p>{{quickNote.text}}</p>
+<div class="quick-note">
+  <div class="row">
+    <div class="col-md-12">
+      <h4 class="text-primary pull-left">{{quickNote.title}}</h4>
+      <div class="pull-right">
+        <button (click)="onEditClick()" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="{{ 'quick-note.tooltip.edit' | translate }}">
+          <span class="glyphicon glyphicon-pencil"></span> 
+        </button>
+        <button (click)="onDeleteClick()" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="{{ 'quick-note.tooltip.delete' | translate }}">
+          <span class="glyphicon glyphicon-trash"></span> 
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <p>{{quickNote.text}}</p>
+    </div>
+  </div>
 </div>

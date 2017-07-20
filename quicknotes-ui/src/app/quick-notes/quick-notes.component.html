@@ -2,22 +2,31 @@
 
 <hr>
 
+<div class="row">
+  <div class="col-md-12">
+    <button (click)="onNewClick()" type="button" class="btn btn-primary" [disabled]="loading">New Quick Note</button>
+  </div>
+</div>
+
+
 <div *ngIf="loading">
-  <p>Loading...</p>
+  <div class="spinner">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+  </div>
 </div>
 
 <div *ngIf="!loading && !!result">
 
-  <div *ngIf="result.length === 0">
-    <p>No quick notes</p>
-  </div>
-
-  <div *ngIf="result.length > 0">
-    <p>Number of quick notes: {{result.length}}</p>
+  <div *ngIf="result.length === 0" class="row">
+    <h3 class="text-center" style="margin: 100px auto;">{{ 'quick-notes.no-quick-notes' | translate }}</h3>
   </div>
 
   <div *ngFor="let quickNote of result">
-    <app-quick-note [quickNote]="quickNote"></app-quick-note>
+    <app-quick-note [quickNote]="quickNote" (deleteQuickNote)="onDeleteQuickNote($event)"></app-quick-note>
   </div>
 
 </div>

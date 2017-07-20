@@ -3,6 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/delay';
 
 import { QuickNote } from './quick-note.model';
 
@@ -12,7 +13,31 @@ export class QuickNoteService {
   constructor(private http: Http) { }
 
   getQuickNotes(): Observable<QuickNote[]> {
-    return this.http.get('/api/quicknotes')
+    return this.http.get('/api/quicknotes').delay(2000)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getQuickNote(id: number): Observable<QuickNote> {
+    return this.http.get('/api/quicknotes/' + id)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  createQuickNote(quickNote: QuickNote): Observable<QuickNote[]> {
+    return this.http.post('/api/quicknotes', quickNote)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  updateQuickNote(id: number, quickNote: QuickNote): Observable<QuickNote[]> {
+    return this.http.put('/api/quicknotes', quickNote)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  deleteQuickNote(id: number): Observable<QuickNote[]> {
+    return this.http.delete('/api/quicknotes/' + id)
       .map(this.extractData)
       .catch(this.handleError);
   }
