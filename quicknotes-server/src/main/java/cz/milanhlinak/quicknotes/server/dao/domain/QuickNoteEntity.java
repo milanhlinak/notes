@@ -22,10 +22,10 @@ public class QuickNoteEntity implements Serializable {
     @Column(name = "id")
     private Long id;
     
-    @Column(name = "title")
+    @Column(name = "title", columnDefinition = "TEXT")
     private String title;
     
-    @Column(name = "text")
+    @Column(name = "text", columnDefinition = "TEXT")
     private String text;
 
     public Long getId() {
