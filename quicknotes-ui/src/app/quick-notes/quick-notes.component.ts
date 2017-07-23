@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { QuickNoteService } from './shared/quick-note.service';
 import { QuickNote } from './shared/quick-note.model';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-quick-notes',
@@ -12,24 +14,26 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 export class QuickNotesComponent implements OnInit, OnDestroy {
 
   @ViewChild('createModal') createModal: ModalDirective;
+  @ViewChild('createForm') createForm: NgForm;
 
   private subscription: Subscription = null;
-  result: QuickNote[] = null;
+  quickNote: QuickNote = { title: '', text: '' };
+  quickNotes: QuickNote[] = null;
   loading = false;
 
-  constructor(private quickNoteService: QuickNoteService) { }
+  constructor(private quickNoteService: QuickNoteService, private translateService: TranslateService) { }
 
   ngOnInit() {
     this.loading = true;
     this.subscription = this.quickNoteService.getQuickNotes()
       .subscribe(
-      result => {
+      next => {
         this.loading = false;
-        this.result = result;
+        this.quickNotes = next;
       },
       error => {
         this.loading = false;
-        this.result = null;
+        this.quickNotes = null;
       }
       );
   }
@@ -41,6 +45,7 @@ export class QuickNotesComponent implements OnInit, OnDestroy {
   }
 
   onNewClick() {
+    this.createForm.reset();
     this.createModal.show();
   }
 
@@ -50,7 +55,7 @@ export class QuickNotesComponent implements OnInit, OnDestroy {
       .subscribe(
       next => {
         this.loading = false;
-        this.result = next;
+        this.quickNotes = next;
       },
       errror => {
         this.loading = false;
@@ -64,7 +69,7 @@ export class QuickNotesComponent implements OnInit, OnDestroy {
       .subscribe(
       next => {
         this.loading = false;
-        this.result = next;
+        this.quickNotes = next;
       },
       errror => {
         this.loading = false;
@@ -75,20 +80,19 @@ export class QuickNotesComponent implements OnInit, OnDestroy {
 
   hideCreateModal() {
     this.createModal.hide();
+    this.translateService.use('cs');
   }
 
-  create() {
-
-    const quickNote: QuickNote = { title: 'title', text: 'text' };
+  onCreateSubmit() {
 
     this.createModal.hide();
 
     this.loading = true;
-    this.quickNoteService.createQuickNote(quickNote)
+    this.quickNoteService.createQuickNote(this.quickNote)
       .subscribe(
       next => {
         this.loading = false;
-        this.result = next;
+        this.quickNotes = next;
       },
       errror => {
         this.loading = false;

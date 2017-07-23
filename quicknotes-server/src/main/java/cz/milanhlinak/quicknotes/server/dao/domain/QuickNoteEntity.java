@@ -21,10 +21,10 @@ public class QuickNoteEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
-    
+
     @Column(name = "title", columnDefinition = "TEXT")
     private String title;
-    
+
     @Column(name = "text", columnDefinition = "TEXT")
     private String text;
 

@@ -3,10 +3,12 @@
     <div class="col-md-12">
       <h4 class="text-primary pull-left">{{quickNote.title}}</h4>
       <div class="pull-right">
-        <button (click)="onEditClick()" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="{{ 'quick-note.tooltip.edit' | translate }}" [disabled]="loading">
+        <button (click)="onEditClick()" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="{{ 'quick-note.tooltip.edit' | translate }}"
+          [disabled]="loading">
           <span class="glyphicon glyphicon-pencil"></span> 
         </button>
-        <button (click)="onDeleteClick()" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="{{ 'quick-note.tooltip.delete' | translate }}" [disabled]="loading">
+        <button (click)="onDeleteClick()" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="{{ 'quick-note.tooltip.delete' | translate }}"
+          [disabled]="loading">
           <span class="glyphicon glyphicon-trash"></span> 
         </button>
       </div>
@@ -20,37 +22,58 @@
   </div>
 </div>
 
-<div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
+<div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title pull-left">Edit</h4>
+        <h4 class="modal-title pull-left">Edit Quick Note</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="hideEditModal()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        I am a child modal, opened from parent component!
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="edit()">Save</button>
-        <button type="button" class="btn btn-default" (click)="hideEditModal()">Close</button>
-      </div>
+
+      <form #editForm="ngForm" (ngSubmit)="onEditSubmit()">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" class="form-control" required name="title" [(ngModel)]="editedQuickNote.title" #title="ngModel">
+            <div *ngIf="title.errors && (title.dirty || title.touched)" class="alert alert-danger">
+              <div [hidden]="!title.errors.required">
+                Title is required
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="text">Text</label>
+            <textarea id="text" rows="3" class="form-control" required name="text" [(ngModel)]="editedQuickNote.text" #text="ngModel" style="resize: none;"></textarea>
+            <div *ngIf="text.errors && (text.dirty || text.touched)" class="alert alert-danger">
+              <div [hidden]="!text.errors.required">
+                Text is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="!editForm.form.valid">Edit</button>
+          <button type="button" class="btn btn-default" (click)="hideEditModal()">Close</button>
+        </div>
+      </form>
+
     </div>
   </div>
 </div>
 
-<div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
+<div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title pull-left">Delete</h4>
+        <h4 class="modal-title pull-left">Delete Quick Note</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="hideDeleteModal()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        I am a child modal, opened from parent component!
+        Are you sure?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>

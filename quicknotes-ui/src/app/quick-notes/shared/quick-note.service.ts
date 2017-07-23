@@ -25,7 +25,7 @@ export class QuickNoteService {
   }
 
   createQuickNote(quickNote: QuickNote): Observable<QuickNote[]> {
-    return this.http.post('/api/quicknotes', quickNote).delay(500000)
+    return this.http.post('/api/quicknotes', quickNote)
       .map(this.extractData)
       .catch(this.handleError);
   }

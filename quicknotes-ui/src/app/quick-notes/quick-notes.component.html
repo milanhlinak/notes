@@ -8,7 +8,6 @@
   </div>
 </div>
 
-
 <div *ngIf="loading">
   <div class="spinner">
     <div class="rect1"></div>
@@ -19,34 +18,55 @@
   </div>
 </div>
 
-<div *ngIf=" !!result">
+<div *ngIf="!loading && !!quickNotes">
 
-  <div *ngIf="result.length === 0" class="row">
+  <div *ngIf="quickNotes.length === 0" class="row">
     <h3 class="text-center" style="margin: 100px auto;">{{ 'quick-notes.no-quick-notes' | translate }}</h3>
   </div>
 
-  <div *ngFor="let quickNote of result">
+  <div *ngFor="let quickNote of quickNotes">
     <app-quick-note [quickNote]="quickNote" [loading]="loading" (deleteQuickNote)="onDeleteQuickNote($event)" (editQuickNote)="onEditQuickNote($event)"></app-quick-note>
   </div>
 
 </div>
 
-<div bsModal #createModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
+<div bsModal #createModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title pull-left">Create</h4>
+        <h4 class="modal-title pull-left">Create Quick Note</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="hideCreateModal()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        I am a child modal, opened from parent component!
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="create()">Create</button>
-        <button type="button" class="btn btn-default" (click)="hideCreateModal()">Close</button>
-      </div>
+
+      <form #createForm="ngForm" (ngSubmit)="onCreateSubmit()">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" class="form-control" required name="title" [(ngModel)]="quickNote.title" #title="ngModel">
+            <div *ngIf="title.errors && (title.dirty || title.touched)" class="alert alert-danger">
+              <div [hidden]="!title.errors.required">
+                Title is required
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="text">Text</label>
+            <textarea id="text" rows="3" class="form-control" required name="text" [(ngModel)]="quickNote.text" #text="ngModel" style="resize: none;"></textarea>
+            <div *ngIf="text.errors && (text.dirty || text.touched)" class="alert alert-danger">
+              <div [hidden]="!text.errors.required">
+                Text is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="!createForm.form.valid">Create</button>
+          <button type="button" class="btn btn-default" (click)="hideCreateModal()">Close</button>
+        </div>
+      </form>
+
     </div>
   </div>
 </div>

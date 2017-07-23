@@ -33,7 +33,7 @@ public class QuickNoteServiceImpl implements QuickNoteService {
     @Override
     public List<QuickNote> getAllQuickNotes() {
         List<QuickNote> quickNotes = new ArrayList<>();
-        quickNoteRepository.findAll().forEach(item -> {
+        quickNoteRepository.findAllByOrderByIdDesc().forEach(item -> {
             quickNotes.add(new QuickNote(item.getId(), item.getTitle(),
                     item.getText()));
         });
