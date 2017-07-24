@@ -5,6 +5,7 @@ import { NoteService } from './shared/note.service';
 import { Note } from './shared/note.model';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-notes',
@@ -22,7 +23,7 @@ export class NotesComponent implements OnInit, OnDestroy {
   loading = false;
   selectedLanguage = 'cs';
 
-  constructor(private noteService: NoteService, private translateService: TranslateService) { }
+  constructor(private noteService: NoteService, private translateService: TranslateService, private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.loading = true;

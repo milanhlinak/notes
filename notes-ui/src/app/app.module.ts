@@ -9,6 +9,8 @@ import { NotesModule } from './notes/notes.module';
 import { NotFoundModule } from './not-found/not-found.module';
 import { AppRoutingModule } from './app-routing.module';
 import { ModalModule } from 'ngx-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -30,6 +32,8 @@ export function createTranslateLoader(http: Http) {
       }
     }),
     ModalModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     NotesModule,
     NotFoundModule,
     AppRoutingModule
