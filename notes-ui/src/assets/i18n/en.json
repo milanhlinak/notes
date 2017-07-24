@@ -1,0 +1,33 @@
+{
+
+    "notes.title": "Notes",
+    "notes.tooltip.new-note": "New note",
+    "notes.tooltip.new-note.tooltip": "New note",
+    "notes.no-notes": "No notes",
+    "notes.new-note": "New note",
+
+    "notes.create-dialog.create-note": "Create note",
+    "notes.create-dialog.title": "Title",
+    "notes.create-dialog.title-required": "Title is required",
+    "notes.create-dialog.text": "Text",
+    "notes.create-dialog.text-required": "Text is required",
+    "notes.create-dialog.create": "Create",
+    "notes.create-dialog.close": "Close",
+
+    "note.edit.tooltip": "Edit",
+    "note.delete.tooltip": "Delete",
+
+    "note.edit-dialog.edit-note": "Edit note",
+    "note.edit-dialog.title": "Title",
+    "note.edit-dialog.title-required": "Title is required",
+    "note.edit-dialog.text": "Text",
+    "note.edit-dialog.text-required": "Text is required",
+    "note.edit-dialog.edit": "Edit",
+    "note.edit-dialog.close": "Close",
+
+    "note.delete-dialog.delete-note": "Delete note",
+    "note.delete-dialog.message": "Are you sure you want to delete this note?",
+    "note.delete-dialog.delete": "Delete",
+    "note.delete-dialog.close": "Close"
+
+}

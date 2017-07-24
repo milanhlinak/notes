@@ -1,1 +1,1 @@
-# Quick Notes
+# Notes

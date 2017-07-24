@@ -1,0 +1,33 @@
+{
+
+    "notes.title": "Poznámky",
+    "notes.tooltip.new-note": "Nová poznámka",
+    "notes.tooltip.new-note.tooltip": "Nová poznámka",
+    "notes.no-notes": "Žádné poznámky",
+    "notes.new-note": "Nová poznámka",
+
+    "notes.create-dialog.create-note": "Vytvoření poznámky",
+    "notes.create-dialog.title": "Název",
+    "notes.create-dialog.title-required": "Název je vyžadován",
+    "notes.create-dialog.text": "Text",
+    "notes.create-dialog.text-required": "Text je vyžadován",
+    "notes.create-dialog.create": "Vytvořit",
+    "notes.create-dialog.close": "Zavřít",
+
+    "note.edit.tooltip": "Editovat",
+    "note.delete.tooltip": "Odstranit",
+
+    "note.edit-dialog.edit-note": "Editace poznámky",
+    "note.edit-dialog.title": "Název",
+    "note.edit-dialog.title-required": "Název je vyžadová",
+    "note.edit-dialog.text": "Text",
+    "note.edit-dialog.text-required": "Text je vyžadován",
+    "note.edit-dialog.edit": "Upravit",
+    "note.edit-dialog.close": "Zavřít",
+
+    "note.delete-dialog.delete-note": "Odstranění poznámky",
+    "note.delete-dialog.message": "Opravdu chcete tuto poznámku odstanit?",
+    "note.delete-dialog.delete": "Odstranit",
+    "note.delete-dialog.close": "Zavřít"
+
+}
