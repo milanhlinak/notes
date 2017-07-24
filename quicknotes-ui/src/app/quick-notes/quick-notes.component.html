@@ -1,10 +1,24 @@
-<h1>Quick Notes</h1>
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="pull-left">{{ 'quick-notes.title' | translate }}</h1>
+    <div class="btn-group pull-right" data-toggle="buttons" style="margin-top: 20px;">
+      <label class="btn btn-default" [class.active]="selectedLanguage === 'en'" data-toggle="tooltip" title="EN">
+        <input type="radio" name="options" id="option1" [checked]="selectedLanguage === 'en'" (click)="changeSelectedLanguage('en')"> EN
+      </label>
+      <label class="btn btn-default" [class.active]="selectedLanguage === 'cs'" data-toggle="tooltip" title="CS">
+        <input type="radio" name="options" id="option2" [checked]="selectedLanguage === 'cs'" (click)="changeSelectedLanguage('cs')"> CS
+      </label>
+    </div>
+  </div>
+</div>
 
 <hr>
 
 <div class="row">
   <div class="col-md-12">
-    <button (click)="onNewClick()" type="button" class="btn btn-primary" [disabled]="loading">New Quick Note</button>
+    <button (click)="onNewClick()" type="button" class="btn btn-primary" [disabled]="loading" data-toggle="tooltip" title="{{ 'quick-notes.tooltip.new-quick-note.tooltip' | translate }}">
+      {{ 'quick-notes.new-quick-note' | translate }}
+    </button>
   </div>
 </div>
 
@@ -34,7 +48,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title pull-left">Create Quick Note</h4>
+        <h4 class="modal-title pull-left">{{ 'quick-notes.create-dialog.create-quick-note' | translate }}</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="hideCreateModal()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -43,27 +57,27 @@
       <form #createForm="ngForm" (ngSubmit)="onCreateSubmit()">
         <div class="modal-body">
           <div class="form-group">
-            <label for="title">Title</label>
+            <label for="title">{{ 'quick-notes.create-dialog.title' | translate }}</label>
             <input type="text" id="title" class="form-control" required name="title" [(ngModel)]="quickNote.title" #title="ngModel">
             <div *ngIf="title.errors && (title.dirty || title.touched)" class="alert alert-danger">
               <div [hidden]="!title.errors.required">
-                Title is required
+                {{ 'quick-notes.create-dialog.title-required' | translate }}
               </div>
             </div>
           </div>
           <div class="form-group">
-            <label for="text">Text</label>
+            <label for="text">{{ 'quick-notes.create-dialog.text' | translate }}</label>
             <textarea id="text" rows="3" class="form-control" required name="text" [(ngModel)]="quickNote.text" #text="ngModel" style="resize: none;"></textarea>
             <div *ngIf="text.errors && (text.dirty || text.touched)" class="alert alert-danger">
               <div [hidden]="!text.errors.required">
-                Text is required
+                {{ 'quick-notes.create-dialog.text-required' | translate }}
               </div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" [disabled]="!createForm.form.valid">Create</button>
-          <button type="button" class="btn btn-default" (click)="hideCreateModal()">Close</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!createForm.form.valid">{{ 'quick-notes.create-dialog.create' | translate }}</button>
+          <button type="button" class="btn btn-default" (click)="hideCreateModal()">{{ 'quick-notes.create-dialog.close' | translate }}</button>
         </div>
       </form>
 

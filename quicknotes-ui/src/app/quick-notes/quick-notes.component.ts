@@ -20,6 +20,7 @@ export class QuickNotesComponent implements OnInit, OnDestroy {
   quickNote: QuickNote = { title: '', text: '' };
   quickNotes: QuickNote[] = null;
   loading = false;
+  selectedLanguage = 'cs';
 
   constructor(private quickNoteService: QuickNoteService, private translateService: TranslateService) { }
 
@@ -36,6 +37,8 @@ export class QuickNotesComponent implements OnInit, OnDestroy {
         this.quickNotes = null;
       }
       );
+
+    this.changeSelectedLanguage(localStorage.getItem('selectedLanguage') || 'en');
   }
 
   ngOnDestroy() {
@@ -98,6 +101,12 @@ export class QuickNotesComponent implements OnInit, OnDestroy {
         this.loading = false;
       }
       );
+  }
+
+  changeSelectedLanguage(language: string) {
+    this.selectedLanguage = language;
+    localStorage.setItem('selectedLanguage', language);
+    this.translateService.use(language);
   }
 
 }

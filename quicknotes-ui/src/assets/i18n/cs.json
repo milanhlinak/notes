@@ -1,3 +1,33 @@
 {
-    "quick-notes.no-quick-notes": "Žádné rychlé poznámky"
+
+    "quick-notes.title": "Poznámky",
+    "quick-notes.tooltip.new-quick-note": "Nová poznámka",
+    "quick-notes.tooltip.new-quick-note.tooltip": "Nová poznámka",
+    "quick-notes.no-quick-notes": "Žádné poznámky",
+    "quick-notes.new-quick-note": "Nová poznámka",
+
+    "quick-notes.create-dialog.create-quick-note": "Vytvoření poznámky",
+    "quick-notes.create-dialog.title": "Název",
+    "quick-notes.create-dialog.title-required": "Název je vyžadován",
+    "quick-notes.create-dialog.text": "Text",
+    "quick-notes.create-dialog.text-required": "Text je vyžadován",
+    "quick-notes.create-dialog.create": "Vytvořit",
+    "quick-notes.create-dialog.close": "Zavřít",
+
+    "quick-note.edit.tooltip": "Editovat",
+    "quick-note.delete.tooltip": "Odstranit",
+
+    "quick-note.edit-dialog.edit-quick-note": "Editace poznámky",
+    "quick-note.edit-dialog.title": "Název",
+    "quick-note.edit-dialog.title-required": "Název je vyžadová",
+    "quick-note.edit-dialog.text": "Text",
+    "quick-note.edit-dialog.text-required": "Text je vyžadován",
+    "quick-note.edit-dialog.edit": "Upravit",
+    "quick-note.edit-dialog.close": "Zavřít",
+
+    "quick-note.delete-dialog.delete-quick-note": "Odstranění poznámky",
+    "quick-note.delete-dialog.message": "Opravdu chcete tuto poznámku smazat?",
+    "quick-note.delete-dialog.delete": "Odstranit",
+    "quick-note.delete-dialog.close": "Zavřít"
+
 }
