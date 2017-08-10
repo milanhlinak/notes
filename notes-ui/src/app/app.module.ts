@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ModalModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { PipesModule } from './shared/pipes/pipes.module';
 
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -24,6 +25,7 @@ export function createTranslateLoader(http: Http) {
     BrowserModule,
     FormsModule,
     HttpModule,
+    PipesModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

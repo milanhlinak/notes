@@ -7,11 +7,13 @@ import { NotesRoutingModule } from './notes-routing.module';
 import { NotesComponent } from './notes.component';
 import { NoteComponent } from './note/note.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { PipesModule } from '../shared/pipes/pipes.module';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
+        PipesModule,
         TranslateModule,
         NotesRoutingModule,
         ModalModule

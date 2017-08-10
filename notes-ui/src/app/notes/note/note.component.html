@@ -23,7 +23,7 @@
   <div class="row">
     <div class="col-md-12">
       <p>{{note.text}}</p>
-      <p class="pull-right" style="margin: 0px; font-size: 10px; font-style: italic; " data-toggle="tooltip" title="{{ 'note.created-at' | translate:{date: note.createdAt | date:'medium'} }}">{{ 'note.updated-at' | translate:{date: note.updatedAt | date:'medium'} }}</p>
+      <p class="pull-right" style="margin: 0px; font-size: 10px; font-style: italic; " data-toggle="tooltip" title="{{ 'note.created-at' | translate:{date: note.createdAt | localizedDate:'fullDate'} }}">{{ 'note.updated-at' | translate:{date: note.updatedAt | localizedDate} }}</p>
     </div>
   </div>
 
