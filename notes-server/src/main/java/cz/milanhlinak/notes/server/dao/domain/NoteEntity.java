@@ -1,6 +1,7 @@
 package cz.milanhlinak.notes.server.dao.domain;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,11 +23,17 @@ public class NoteEntity implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "title", columnDefinition = "TEXT")
+    @Column(name = "title", columnDefinition = "TEXT", nullable = false)
     private String title;
 
-    @Column(name = "text", columnDefinition = "TEXT")
+    @Column(name = "text", columnDefinition = "TEXT", nullable = false)
     private String text;
+
+    @Column(name = "created_at", nullable = false)
+    private Timestamp createdAt;
+
+    @Column(name = "updated_at", nullable = false)
+    private Timestamp updatedAt;
 
     public Long getId() {
         return id;
@@ -50,6 +57,22 @@ public class NoteEntity implements Serializable {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
 }

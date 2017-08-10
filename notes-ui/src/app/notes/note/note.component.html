@@ -1,7 +1,10 @@
 <div class="note">
   <div class="row">
+
     <div class="col-md-12">
+
       <h4 class="text-primary pull-left">{{note.title}}</h4>
+
       <div class="pull-right">
         <button (click)="onEditClick()" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="{{ 'note.edit.tooltip' | translate }}"
           [disabled]="loading">
@@ -12,14 +15,18 @@
           <span class="glyphicon glyphicon-trash"></span> 
         </button>
       </div>
+
     </div>
+
   </div>
 
   <div class="row">
     <div class="col-md-12">
       <p>{{note.text}}</p>
+      <p class="pull-right" style="margin: 0px; font-size: 10px; font-style: italic; " data-toggle="tooltip" title="{{ 'note.created-at' | translate:{date: note.createdAt | date:'medium'} }}">{{ 'note.updated-at' | translate:{date: note.updatedAt | date:'medium'} }}</p>
     </div>
   </div>
+
 </div>
 
 <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
@@ -45,8 +52,7 @@
           </div>
           <div class="form-group">
             <label for="text">{{ 'note.edit-dialog.text' | translate }}</label>
-            <textarea id="text" rows="3" class="form-control" required name="text" [(ngModel)]="editedNote.text" #text="ngModel"
-              style="resize: none;"></textarea>
+            <textarea id="text" rows="3" class="form-control" required name="text" [(ngModel)]="editedNote.text" #text="ngModel" style="resize: none;"></textarea>
             <div *ngIf="text.errors && (text.dirty || text.touched)" class="alert alert-danger">
               <div [hidden]="!text.errors.required">
                 {{ 'note.edit-dialog.textrequired' | translate }}

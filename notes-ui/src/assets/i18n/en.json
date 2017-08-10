@@ -16,6 +16,8 @@
 
     "note.edit.tooltip": "Edit",
     "note.delete.tooltip": "Delete",
+    "note.updated-at": "Updated: {{date}}",
+    "note.created-at": "Created: {{date}}",
 
     "note.edit-dialog.edit-note": "Edit note",
     "note.edit-dialog.title": "Title",

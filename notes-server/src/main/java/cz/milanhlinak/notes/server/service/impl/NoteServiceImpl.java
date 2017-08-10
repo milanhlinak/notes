@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import cz.milanhlinak.notes.server.dao.repository.NoteRepository;
 import cz.milanhlinak.notes.server.service.NoteService;
+import java.sql.Timestamp;
+import org.joda.time.DateTime;
 
 /**
- * Implementation of note service.
+ * Implementation of {@link NoteService}.
  *
  * @author Milan Hlinak
  */
@@ -33,8 +35,10 @@ public class NoteServiceImpl implements NoteService {
     @Override
     public List<Note> getAllNotes() {
         List<Note> notes = new ArrayList<>();
-        noteRepository.findAllByOrderByIdDesc().forEach(item -> {
-            notes.add(new Note(item.getId(), item.getTitle(), item.getText()));
+        noteRepository.findAllByOrderByIdDesc().forEach(noteEntity -> {
+            notes.add(new Note(noteEntity.getId(), noteEntity.getTitle(),
+                    noteEntity.getText(), noteEntity.getCreatedAt().getTime(),
+                    noteEntity.getUpdatedAt().getTime()));
         });
         LOG.info("All notes retrieved");
         return notes;
@@ -50,7 +54,8 @@ public class NoteServiceImpl implements NoteService {
         }
 
         Note note = new Note(noteEntity.getId(), noteEntity.getTitle(),
-                noteEntity.getText());
+                noteEntity.getText(), noteEntity.getCreatedAt().getTime(),
+                noteEntity.getUpdatedAt().getTime());
         LOG.info("Note with id {} retrieved", id);
         return note;
     }
@@ -60,6 +65,9 @@ public class NoteServiceImpl implements NoteService {
         NoteEntity noteEntity = new NoteEntity();
         noteEntity.setTitle(note.getTitle());
         noteEntity.setText(note.getText());
+        long millis = DateTime.now().getMillis();
+        noteEntity.setCreatedAt(new Timestamp(millis));
+        noteEntity.setUpdatedAt(new Timestamp(millis));
         NoteEntity savedNoteEntity = noteRepository.save(noteEntity);
         LOG.info("Note with id {} added", savedNoteEntity.getId());
     }
@@ -75,6 +83,7 @@ public class NoteServiceImpl implements NoteService {
 
         noteEntity.setText(note.getText());
         noteEntity.setTitle(note.getTitle());
+        noteEntity.setUpdatedAt(new Timestamp(DateTime.now().getMillis()));
         NoteEntity savedNoteEntity = noteRepository.save(noteEntity);
         LOG.info("Note with id {} updated", savedNoteEntity.getId());
     }

@@ -16,6 +16,8 @@
 
     "note.edit.tooltip": "Editovat",
     "note.delete.tooltip": "Odstranit",
+    "note.updated-at": "Aktualizováno: {{date}}",
+    "note.created-at": "Vytvořeno: {{date}}",
 
     "note.edit-dialog.edit-note": "Editace poznámky",
     "note.edit-dialog.title": "Název",
