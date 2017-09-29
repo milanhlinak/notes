@@ -1,17 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule, Http } from '@angular/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AppComponent } from './app.component';
+import { ModalModule } from 'ngx-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
+import { CoreModule } from './core/core.module';
 import { NotesModule } from './notes/notes.module';
 import { NotFoundModule } from './not-found/not-found.module';
 import { AppRoutingModule } from './app-routing.module';
-import { ModalModule } from 'ngx-bootstrap';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
-import { PipesModule } from './shared/pipes/pipes.module';
+
+import { AppComponent } from './app.component';
 
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -23,9 +23,9 @@ export function createTranslateLoader(http: Http) {
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    BrowserAnimationsModule,
     HttpModule,
-    PipesModule,
+    CoreModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -34,7 +34,6 @@ export function createTranslateLoader(http: Http) {
       }
     }),
     ModalModule.forRoot(),
-    BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NotesModule,
     NotFoundModule,

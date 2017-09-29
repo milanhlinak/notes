@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
+
 import { LocalizedDatePipe } from './localized-date.pipe';
 
+const PIPES = [
+    LocalizedDatePipe
+];
+
 @NgModule({
-    declarations: [
-        LocalizedDatePipe
-    ],
-    exports: [
-        LocalizedDatePipe
-    ]
+    imports: [],
+    declarations: [...PIPES],
+    providers: [],
+    exports: [...PIPES]
 })
-export class PipesModule { }
+export class PipesModule {
+}
